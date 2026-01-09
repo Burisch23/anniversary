@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Letter 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    .letter-container {
+  position: relative;
+  z-index: 2;
+}
+
+
+    /* 🌼 Flower background – guaranteed to work */
+    body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'>\
+  <g fill='white' fill-opacity='0.35'>\
+    <circle cx='60' cy='60' r='4'/>\
+    <ellipse cx='60' cy='40' rx='6' ry='12'/>\
+    <ellipse cx='60' cy='80' rx='6' ry='12'/>\
+    <ellipse cx='40' cy='60' rx='12' ry='6'/>\
+    <ellipse cx='80' cy='60' rx='12' ry='6'/>\
+  </g>\
+</svg>");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+
+    body {
+  background:
+    radial-gradient(circle at top, rgba(255,182,193,0.35), transparent 60%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,0.015),
+      rgba(0,0,0,0.015) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    linear-gradient(180deg, #fff0f5, #ffffff);
+}
+
+    h1 {
+  margin: 40px 0 10px;
+  text-align: center;
+    }
+
+    /* Slideshow */
+    .slideshow {
+      width: 280px;
+      height: 360px;
+      margin: 30px auto;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .slideshow img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .slideshow img.active {
+      display: block;
+      animation: fade 1.2s;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Letter text */
+    .letter-text {
+      max-width: 500px;
+      margin: auto;
+      padding: 0 20px;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    /* Button */
+    .btn {
+      display: inline-block;
+      margin: 30px 10px;
+      padding: 12px 26px;
+      background: #e75480;
+      color: white;
+      border-radius: 25px;
+      text-decoration: none;
+    }
+
+/* ===== STACKED SLIDER ===== */
+.stack-slider {
+  position: relative;
+  width: 280px;
+  height: 360px;
+  margin: 40px auto;
+  isolation: isolate;
+}
+
+/* Backdrop dreamy layer */
+.stack-slider::before {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  background: rgba(255, 240, 245, 0.35);
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  border-radius: 30px;
+  z-index: 0;
+}
+
+.stack-slider .card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 20px 35px rgba(0,0,0,0.25);
+  opacity: 0;
+  transition: all 1.2s cubic-bezier(.25,.8,.25,1);
+  z-index: 1;
+}
+
+/* รูปหลัก */
+.stack-slider .card.active {
+  opacity: 1;
+  transform: translateX(0) translateY(0) scale(1) rotate(0deg);
+  filter: blur(0);
+  z-index: 4;
+}
+
+/* รูปด้านหลังฝั่งขวา */
+.stack-slider .card.next {
+  opacity: 0.45;
+  transform: translateX(120px) translateY(30px) scale(0.92) rotate(18deg);
+  filter: blur(2.5px);
+  z-index: 2;
+}
+
+/* รูปด้านหลังฝั่งซ้าย */
+.stack-slider .card.back {
+  opacity: 0.35;
+  transform: translateX(-120px) translateY(45px) scale(0.9) rotate(-20deg);
+  filter: blur(3px);
+  z-index: 1;
+}
+
+.letter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.letter-text {
+  max-width: 520px;
+  margin: 40px auto;
+  padding: 32px 28px;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 22px;
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+  
+  font-size: 1.05rem;
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+  color: #444;
+}
+.letter-text p {
+  margin: 0 0 1.6em;
+}
+.letter-text {
+  font-family: 'Playfair Display', serif;
+}
+
+/* 📱 Mobile optimization */
+@media (max-width: 480px) {
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .stack-slider {
+    width: 220px;
+    height: 300px;
+  }
+
+  .letter-text {
+    max-width: 100%;
+    margin: 24px 16px;
+    padding: 22px 18px;
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .hero img {
+    width: 220px;
+    height: 220px;
+  }
+
+  .button-row {
+    flex-direction: column;   /* ปุ่มเรียงลง */
+    gap: 12px;
+  }
+}
+
+  </style>
+  
+</head>
+
+<body>
+
+<div class="flower-bg"></div>
+
+  <div class="letter-container">
+
+    <h1>For You 💕</h1>
+
+    <div class="stack-slider">
+      <!-- รูปทั้งหมด -->
+        <img src="images/1fc38b5d-b643-4f3e-b769-089a7763cf74.jpeg" class="card">
+    <img src="images/4fe01223-f67a-455f-baf8-93dbb22176fb.jpeg" class="card">
+    <img src="images/7a63a525-f753-48e7-9ded-7b7dbac02ecf.jpeg" class="card">
+    <img src="images/11e6209c-6337-4aa2-a126-0b0c42ac170a.jpeg" class="card">
+    <img src="images/12b20ac0-b812-40a3-a6b9-9416f5adba1d.jpeg" class="card">
+    <img src="images/37e1d78f-9eaa-434d-9984-5599cbc2855a.jpeg" class="card">
+    <img src="images/78ec33dc-89b0-4c5f-9aa0-abbb0e75d822.jpeg" class="card">
+    <img src="images/0207d590-59d0-4c3d-a6c7-7685981e2a17.jpeg" class="card">
+    <img src="images/705e7a17-bf3e-483a-9804-82d2b98c110a.jpeg" class="card">
+    <img src="images/847b767a-3f0a-48e8-bec0-44e15901829b.jpeg" class="card">
+    <img src="images/922afff4-1046-45bd-b5d1-4a5f0e58c13f.jpeg" class="card">
+    <img src="images/5144edf1-b9ce-478a-828e-ce915855e799.jpeg" class="card">
+    <img src="images/7755f425-668a-4501-b3c4-2a5090164989.jpeg" class="card">
+    <img src="images/63327b6f-af7e-4eab-85aa-3114537dcf33.jpeg" class="card">
+    <img src="images/518255f2-b41a-489b-97ca-e513cb558d63.jpeg" class="card">
+    <img src="images/a8f9669a-3b9d-42a8-ab4e-ce5721856085.jpeg" class="card">
+    <img src="images/a9d26f42-1264-4e94-91ce-56ba62438eb2.jpeg" class="card">
+    <img src="images/af6a05f0-9415-4b99-a9ab-2d9f09552d4a.jpeg" class="card">
+    <img src="images/b8fd5bd8-760d-4703-b437-def2a6376a1d.jpeg" class="card">
+    <img src="images/bb66e90c-a88e-4587-b0ae-ae29dff13ada.jpeg" class="card">
+    <img src="images/bd87b93d-1cff-4efc-8522-56ec14f953fd.jpeg" class="card">
+    <img src="images/c61d7f44-69a6-4e77-b7ee-f9f6b8b39519.jpeg" class="card">
+    <img src="images/c41545c8-1c78-4e75-8221-f4da9afbb940.jpeg" class="card">
+    <img src="images/e1425570-4675-4ec2-a7f0-e7c4dd22eff8.jpeg" class="card">
+    <img src="images/ec5a090b-6700-4702-9f5d-0a259bb42f07.jpeg" class="card">
+    <img src="images/ee7dc807-6e73-4ede-9239-c8dbabe4cbbc.jpeg" class="card">
+    <img src="images/f4f5fd18-2c05-4d36-a44f-424b663eef0b.jpeg" class="card">
+    <img src="images/f852bc9d-7907-4282-b924-dfc72b993a92.jpeg" class="card">
+    </div>
+
+    <div class="letter-text">
+    <p>
+      ตั้งแต่ได้เริ่มคุยกัน ตั้งแต่วันแรกจนวันนี้ <br>
+      ไม่มีวันไหนเลยที่เค้าไม่มีความสุข <br>
+      ถึงเราจะมีทะเลาะกันบ้าง เถียงกันบ่อยๆ <br> 
+      แต่เค้าก็รู้สึกมีความสุขทุกวันที่มีเธออยู่ข้างๆ <br>
+      ถึงแม้เค้าจะชอบทำให้ผิดหวังบ่อยๆ <br> ชอบทำให้เสียใจ
+      แต่เค้าพูดเสมอว่า <br> เค้าจะเป็นคนที่ดีขึ้นให้ได้เพื่อฟร้องซ์ 
+      <br> และอยากทำให้ฟร้องซ์มีความสุขต่อไปในทุกวัน 
+    </p>
+
+    <p>
+      ครบรอบปีนี้อาจไม่มีอะไรหรูหรา  <br>
+      ไม่ได้ซื้อของให้เหมือนปีก่อนๆ  <br> 
+      แต่เค้าตั้งใจทำอันนี้มากๆเลย  <br>
+      เค้าจะตั้งใจและพยายามมากขึ้นในทุกๆวันนะ <br>
+      ขอให้พวกเราสมหวังในสิ่งที่ตั้งใจไว้นะ 💖
+    </p>    
+    <p>
+      สุดท้ายนี้ "รักเสมอนะ" 💖
+    </p>   
+</div>
+
+<div class="button-row">
+  <a class="btn" href="index.html">⬅ Back</a>
+  <button class="btn" onclick="toggleMusic()">🎵 Play Music</button>
+</div>
+
+  </div>
+
+</body>
+
+
+  <!-- MUSIC -->
+  <audio id="music" autoplay loop>
+    <source src="music/Three Man Down - เพลงรัก _ Live at GFEST MARATHON CONCERT 2025 (mp3cut.net).mp3" type="audio/mpeg">
+  </audio>
+
+
+  <!-- SCRIPT -->
+<script>
+  const cards = document.querySelectorAll(".stack-slider .card");
+  let current = 0;
+
+  function updateStack() {
+    cards.forEach((card, i) => {
+      card.classList.remove("active", "next", "back");
+
+      if (i === current) {
+        card.classList.add("active");
+      } else if (i === (current + 1) % cards.length) {
+        card.classList.add("next");
+      } else if (i === (current + 2) % cards.length) {
+        card.classList.add("back");
+      }
+    });
+
+    current = (current + 1) % cards.length;
+  }
+
+  updateStack();
+  setInterval(updateStack, 3000);
+
+  // 🎵 music toggle
+  function toggleMusic() {
+    const music = document.getElementById("music");
+    if (music.paused) {
+      music.play();
+    } else {
+      music.pause();
+    }
+  }
+</script>
+
+
+
+
+
+
+</html>
